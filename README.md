@@ -15,7 +15,7 @@ A complete AI-assisted online shopping website built using Java, JSP, Servlet, M
 - **Development Tool:** Eclipse IDE
 - **Web Server:** Apache Tomcat 10.1.36
 - **Build Tool:** Maven
-- **AI Tools Used:** ChatGPT, Muse AI
+- **AI Tools Used:** ChatGPT
 - **AI Skills:** Prompt Engineering, AI-Assisted Development
 
 ## 🚀 How To Run
