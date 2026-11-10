@@ -1,0 +1,82 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f7f3fa;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.confirmation-container {
+    background: white;
+    width: 100%;
+    max-width: 550px;
+    padding: 40px 30px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+}
+
+.success-icon {
+    width: 75px;
+    height: 75px;
+    background: #e4f8eb;
+    color: #239b56;
+    border-radius: 50%;
+    font-size: 45px;
+    line-height: 75px;
+    margin: 0 auto 20px;
+}
+
+h1 {
+    color: #6c3483;
+    margin-bottom: 15px;
+}
+
+.message {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.order-details {
+    background: #faf7fc;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: left;
+    margin-bottom: 25px;
+}
+
+.order-details h2 {
+    color: #6c3483;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.order-details p {
+    margin: 12px 0;
+    color: #444;
+    overflow-wrap: anywhere;
+}
+
+.shop-btn {
+    display: inline-block;
+    background: #8e44ad;
+    color: white;
+    padding: 13px 28px;
+    border-radius: 7px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.shop-btn:hover {
+    background: #6c3483;
+}

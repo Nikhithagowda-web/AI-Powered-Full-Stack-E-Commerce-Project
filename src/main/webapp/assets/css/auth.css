@@ -1,0 +1,150 @@
+
+/* ==============================
+   FASHION STORE - AUTHENTICATION
+   Login and Registration Pages
+================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #F3F1FA;
+    color: #29243A;
+    min-height: 100vh;
+    padding: 30px 15px;
+}
+
+/* Main Container */
+
+.auth-container {
+    max-width: 550px;
+    margin: 30px auto;
+    padding: 35px;
+    background: #FFFFFF;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Heading */
+
+.auth-container h1 {
+    text-align: center;
+    color: #7046E8;
+    margin-bottom: 10px;
+    font-size: 30px;
+}
+
+.auth-subtitle {
+    text-align: center;
+    color: #777;
+    margin-bottom: 25px;
+    font-size: 14px;
+}
+
+/* Form */
+
+.auth-form {
+    width: 100%;
+}
+
+.auth-form label {
+    display: block;
+    margin-top: 16px;
+    margin-bottom: 7px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.auth-form input,
+.auth-form select {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #DDD9E8;
+    border-radius: 7px;
+    font-size: 14px;
+    background: #FFFFFF;
+    outline: none;
+    transition: 0.3s;
+}
+
+.auth-form input:focus,
+.auth-form select:focus {
+    border-color: #7046E8;
+    box-shadow: 0 0 5px rgba(112, 70, 232, 0.2);
+}
+
+/* Submit Button */
+
+.auth-btn {
+    width: 100%;
+    padding: 14px;
+    margin-top: 25px;
+    background: #7046E8;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 7px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.auth-btn:hover {
+    background: #5932C5;
+}
+
+/* Messages */
+
+.auth-message {
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.auth-error {
+    color: #C62828;
+    background: #FFEBEE;
+}
+
+.auth-success {
+    color: #2E7D32;
+    background: #E8F5E9;
+}
+
+/* Links */
+
+.auth-link {
+    text-align: center;
+    margin-top: 22px;
+    font-size: 14px;
+    color: #666;
+}
+
+.auth-link a {
+    color: #7046E8;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.auth-link a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Design */
+
+@media (max-width: 600px) {
+    .auth-container {
+        margin: 10px auto;
+        padding: 25px 20px;
+    }
+
+    .auth-container h1 {
+        font-size: 25px;
+    }
+}

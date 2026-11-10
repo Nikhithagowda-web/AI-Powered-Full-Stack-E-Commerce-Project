@@ -1,0 +1,155 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f8f8f8;
+    color: #333;
+}
+
+/* Header */
+header {
+    background: #222;
+    color: white;
+    padding: 20px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h2 {
+    color: #ff4081;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 25px;
+}
+
+nav a:hover {
+    color: #ff4081;
+}
+
+/* Main Container */
+.container {
+    width: 85%;
+    margin: 50px auto;
+}
+
+/* Product Details */
+.product-details {
+    display: flex;
+    gap: 50px;
+    background: white;
+    padding: 35px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px #ddd;
+}
+
+/* Product Image */
+.product-image {
+    width: 45%;
+}
+
+.product-image img {
+    width: 100%;
+    height: 450px;
+    object-fit: contain;
+}
+
+/* Product Information */
+.product-info {
+    width: 55%;
+    padding: 20px;
+}
+
+.product-info h1 {
+    margin-bottom: 20px;
+    font-size: 28px;
+}
+
+.price {
+    color: #e91e63;
+    font-size: 26px;
+    font-weight: bold;
+    margin: 20px 0;
+}
+
+.description {
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+/* Form */
+select,
+input {
+    padding: 10px;
+    margin: 10px 0 20px;
+    width: 200px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Add to Cart Button */
+button {
+    padding: 13px 25px;
+    border: none;
+    background: #e91e63;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 15px;
+}
+
+button:hover {
+    background: #c2185b;
+}
+
+/* Back Link */
+.back {
+    display: inline-block;
+    margin-top: 25px;
+    text-decoration: none;
+    color: #e91e63;
+}
+
+.back:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+
+    .product-details {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .product-image,
+    .product-info {
+        width: 100%;
+    }
+
+    .product-image img {
+        height: 300px;
+    }
+
+    header {
+        padding: 20px;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    nav a {
+        margin: 8px;
+    }
+
+    .container {
+        width: 95%;
+    }
+}

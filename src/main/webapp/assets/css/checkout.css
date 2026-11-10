@@ -1,0 +1,143 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #F3F1FA;
+    color: #29243A;
+}
+
+.checkout-header {
+    background: #7046E8;
+    color: white;
+    padding: 20px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.checkout-header a {
+    color: white;
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.checkout-container {
+    max-width: 750px;
+    margin: 35px auto;
+    padding: 30px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+}
+
+h1 {
+    color: #7046E8;
+    margin-bottom: 8px;
+}
+
+.subtitle {
+    color: #777;
+    margin-bottom: 25px;
+}
+
+.checkout-section {
+    margin-bottom: 30px;
+}
+
+.checkout-section h2 {
+    font-size: 20px;
+    margin-bottom: 18px;
+    color: #29243A;
+}
+
+.checkout-section label {
+    display: block;
+    margin: 14px 0 7px;
+    font-weight: 600;
+}
+
+.checkout-section input:not([type="radio"]),
+.checkout-section textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #DDD9E8;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.checkout-section textarea {
+    min-height: 90px;
+    resize: vertical;
+}
+
+.checkout-section input:focus,
+.checkout-section textarea:focus {
+    outline: none;
+    border-color: #7046E8;
+}
+
+.form-row {
+    display: flex;
+    gap: 15px;
+}
+
+.form-row > div {
+    flex: 1;
+}
+
+.checkout-section .payment-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: normal;
+    cursor: pointer;
+}
+
+.place-order-btn {
+    width: 100%;
+    padding: 15px;
+    background: #7046E8;
+    color: white;
+    border: none;
+    border-radius: 7px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.place-order-btn:hover {
+    background: #5932C5;
+}
+
+.back-link {
+    display: inline-block;
+    margin-top: 20px;
+    color: #7046E8;
+    text-decoration: none;
+}
+
+.error-message {
+    color: #C62828;
+    background: #FFEBEE;
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+}
+
+@media (max-width: 600px) {
+    .checkout-container {
+        margin: 15px;
+        padding: 20px;
+    }
+
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+}
