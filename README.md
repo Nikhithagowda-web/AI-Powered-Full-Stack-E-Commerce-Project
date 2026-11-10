@@ -1,10 +1,9 @@
-# 👗 Fashion Store - E-Commerce Website
+# 👗 Fashion Store - AI Powered Full Stack E-Commerce Web Application
 
-A complete online shopping website built using Java, JSP, Servlet, MySQL and Maven.
+A complete AI-assisted online shopping website built using Java, JSP, Servlet, MySQL and Maven.
 
 ## ✨ Features
-- Browse Products with Images & Price
-- Search Products
+- Browse Products
 - Add to Cart & Checkout
 - User Login / Register
 - Admin can Add Products
@@ -16,6 +15,8 @@ A complete online shopping website built using Java, JSP, Servlet, MySQL and Mav
 - **Development Tool:** Eclipse IDE
 - **Web Server:** Apache Tomcat 10.1.36
 - **Build Tool:** Maven
+- **AI Tools Used:** ChatGPT, Muse AI
+- **AI Skills:** Prompt Engineering, AI-Assisted Development
 
 ## 🚀 How To Run
 1. Clone this repo
@@ -25,4 +26,4 @@ A complete online shopping website built using Java, JSP, Servlet, MySQL and Mav
 5. Open: http://localhost:8080/fashionstore
 
 ## 👩‍💻 Made By
-Nikhitha Gowda
+**Nikhitha Gowda**
