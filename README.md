@@ -10,12 +10,12 @@ A complete online shopping website built using Java, JSP, Servlet, MySQL and Mav
 - Admin can Add Products
 
 ## 🛠️ Tech Stack
-**Frontend:** HTML, CSS, JavaScript
-**Backend:** Java, JDBC, Servlets, JSP
-**Database:** MySQL
-**Development Tool:** Eclipse IDE
-**Web Server:** Apache Tomcat 10.1.36
-**Build Tool:** Maven
+- **Frontend:** HTML, CSS, JavaScript
+- **Backend:** Java, JDBC, Servlets, JSP
+- **Database:** MySQL
+- **Development Tool:** Eclipse IDE
+- **Web Server:** Apache Tomcat 10.1.36
+- **Build Tool:** Maven
 
 ## 🚀 How To Run
 1. Clone this repo
