@@ -70,7 +70,7 @@ To develop a user-friendly online fashion shopping platform that simplifies prod
 
 ## 🎥 Project Demo Video
 
-[▶️ Click Here To Watch Demo Video](https://github.com/Nikhithagowda-web/AI-Powered-Full-Stack-E-Commerce-Project/releases/download/v1.0.0/Demo-video-of-AI-Powered-E-Commerce-Project.mp4)
+[▶️ Click Here To Watch Demo Video](https://github.com/Nikhithagowda-web/AI-Powered-Full-Stack-E-Commerce-Project/releases/download/v1.0.0/Demo.video.of.AI.Powered.E-Commerce.Project)
 
 ## 👩‍💻 Made By
 
