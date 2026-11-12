@@ -66,6 +66,12 @@ http://localhost:8080/fashionstore
 
 To develop a user-friendly online fashion shopping platform that simplifies product browsing, shopping cart management, and order placement using Java Full Stack technologies.
 
+## 🎥 Project Demo Video
+
+<video width="100%" controls>
+  <source src="" type="video/mp4">
+</video>
+
 ## 👩‍💻 Made By
 
 **Nikhitha Gowda**
