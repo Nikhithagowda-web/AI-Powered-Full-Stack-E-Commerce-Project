@@ -59,7 +59,7 @@ public class ProductVariantDAOImpl implements ProductVariantDAO {
     }
 
     @Override
-    public List<ProductVariant> getVariantsByProductId(int productId) {
+    public List<ProductVariant> getProductVariantsByProductId(int productId) {
         List<ProductVariant> variants = new ArrayList<>();
         String sql = "SELECT * FROM product_variants WHERE product_id = ?";
 
@@ -82,7 +82,7 @@ public class ProductVariantDAOImpl implements ProductVariantDAO {
     }
 
     @Override
-    public boolean updateVariant(ProductVariant variant) {
+    public boolean updateProductVariant(ProductVariant variant) {
         String sql = "UPDATE product_variants SET product_id = ?, "
                 + "size = ?, color = ?, price = ?, stock_quantity = ? "
                 + "WHERE variant_id = ?";
@@ -106,7 +106,7 @@ public class ProductVariantDAOImpl implements ProductVariantDAO {
     }
 
     @Override
-    public boolean deleteVariant(int variantId) {
+    public boolean deleteProductVariant(int variantId) {
         String sql = "DELETE FROM product_variants WHERE variant_id = ?";
 
         try (Connection con = DBConnection.getConnection();
