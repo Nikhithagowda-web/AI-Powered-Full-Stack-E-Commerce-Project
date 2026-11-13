@@ -82,7 +82,7 @@ public class ProductVariantDAOImpl implements ProductVariantDAO {
     }
 
     @Override
-    public boolean updateProductVariant(ProductVariant variant) {
+    public boolean updateVariant(ProductVariant variant) {
         String sql = "UPDATE product_variants SET product_id = ?, "
                 + "size = ?, color = ?, price = ?, stock_quantity = ? "
                 + "WHERE variant_id = ?";
@@ -93,7 +93,7 @@ public class ProductVariantDAOImpl implements ProductVariantDAO {
             ps.setInt(1, variant.getProductId());
             ps.setString(2, variant.getSize());
             ps.setString(3, variant.getColor());
-            ps.setBigDecimal(4, variant.getPrice());
+            ps.setDouble(4, variant.getPrice());
             ps.setInt(5, variant.getStockQuantity());
             ps.setInt(6, variant.getVariantId());
 
@@ -106,7 +106,7 @@ public class ProductVariantDAOImpl implements ProductVariantDAO {
     }
 
     @Override
-    public boolean deleteProductVariant(int variantId) {
+    public boolean deleteVariant(int variantId) {
         String sql = "DELETE FROM product_variants WHERE variant_id = ?";
 
         try (Connection con = DBConnection.getConnection();
