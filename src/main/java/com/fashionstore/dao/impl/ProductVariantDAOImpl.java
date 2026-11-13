@@ -14,7 +14,7 @@ import java.util.List;
 public class ProductVariantDAOImpl implements ProductVariantDAO {
 
     @Override
-    public boolean addProductVariant(ProductVariant variant) {
+    public boolean addVariant(ProductVariant variant) {
         String sql = "INSERT INTO product_variants "
                 + "(product_id, size, color, price, stock_quantity) "
                 + "VALUES (?, ?, ?, ?, ?)";
@@ -25,7 +25,7 @@ public class ProductVariantDAOImpl implements ProductVariantDAO {
             ps.setInt(1, variant.getProductId());
             ps.setString(2, variant.getSize());
             ps.setString(3, variant.getColor());
-            ps.setBigDecimal(4, variant.getPrice());
+            ps.setDouble(4, variant.getPrice());
             ps.setInt(5, variant.getStockQuantity());
 
             return ps.executeUpdate() > 0;
@@ -37,7 +37,7 @@ public class ProductVariantDAOImpl implements ProductVariantDAO {
     }
 
     @Override
-    public ProductVariant getProductVariantById(int variantId) {
+    public ProductVariant getVariantById(int variantId) {
         String sql = "SELECT * FROM product_variants WHERE variant_id = ?";
 
         try (Connection con = DBConnection.getConnection();
