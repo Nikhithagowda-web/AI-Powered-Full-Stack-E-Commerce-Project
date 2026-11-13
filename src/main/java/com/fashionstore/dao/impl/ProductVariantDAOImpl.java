@@ -1,4 +1,3 @@
-
 package com.fashionstore.dao.impl;
 
 import com.fashionstore.model.ProductVariant;
@@ -59,7 +58,7 @@ public class ProductVariantDAOImpl implements ProductVariantDAO {
     }
 
     @Override
-    public List<ProductVariant> getProductVariantsByProductId(int productId) {
+    public List<ProductVariant> getVariantsByProductId(int productId) {
         List<ProductVariant> variants = new ArrayList<>();
         String sql = "SELECT * FROM product_variants WHERE product_id = ?";
 
@@ -82,7 +81,27 @@ public class ProductVariantDAOImpl implements ProductVariantDAO {
     }
 
     @Override
-    public boolean updateProductVariant(ProductVariant variant) {
+    public List<ProductVariant> getAllVariants() {
+        List<ProductVariant> variants = new ArrayList<>();
+        String sql = "SELECT * FROM product_variants";
+
+        try (Connection con = DBConnection.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+
+            while (rs.next()) {
+                variants.add(mapProductVariant(rs));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return variants;
+    }
+
+    @Override
+    public boolean updateVariant(ProductVariant variant) {
         String sql = "UPDATE product_variants SET product_id = ?, "
                 + "size = ?, color = ?, price = ?, stock_quantity = ? "
                 + "WHERE variant_id = ?";
@@ -106,7 +125,7 @@ public class ProductVariantDAOImpl implements ProductVariantDAO {
     }
 
     @Override
-    public boolean deleteProductVariant(int variantId) {
+    public boolean deleteVariant(int variantId) {
         String sql = "DELETE FROM product_variants WHERE variant_id = ?";
 
         try (Connection con = DBConnection.getConnection();
