@@ -130,7 +130,7 @@ public class ProductVariantDAOImpl implements ProductVariantDAO {
         variant.setProductId(rs.getInt("product_id"));
         variant.setSize(rs.getString("size"));
         variant.setColor(rs.getString("color"));
-        variant.setPrice(rs.getBigDecimal("price"));
+        variant.setPrice(rs.getDouble("price"));
         variant.setStockQuantity(rs.getInt("stock_quantity"));
 
         return variant;
