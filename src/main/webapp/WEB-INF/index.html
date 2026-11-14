@@ -1,10 +1,170 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>WelcomePage</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trendy Fashion Store</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+body{background:#f8f8f8}
+header{background:#111;color:#fff;padding:15px 20px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100}
+header a{color:#fff;text-decoration:none;margin:0 8px}
+.logo{font-size:22px;font-weight:bold}.logo span{color:#ff4d6d}
+.hero{background:linear-gradient(90deg,#ff4d6d,#ff8fa3);color:#fff;padding:45px 20px;text-align:center}
+.hero h1{font-size:36px}.hero button{padding:12px 25px;border:none;background:#111;color:#fff;border-radius:25px;cursor:pointer;margin-top:15px;font-size:16px}
+.section{padding:25px 20px;max-width:1200px;margin:auto}
+.cats{display:flex;gap:10px;flex-wrap:wrap;margin:15px 0}
+.cats button{padding:8px 18px;border:1px solid #ddd;background:#fff;border-radius:20px;cursor:pointer}
+.cats button.active{background:#111;color:#fff}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px}
+.card{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.08);cursor:pointer}
+.card img{width:100%;height:220px;object-fit:cover}
+.card-body{padding:12px}.price{color:#ff4d6d;font-weight:bold;margin:6px 0}
+.card-body button{width:100%;padding:10px;background:#111;color:#fff;border:none;border-radius:8px;cursor:pointer}
+.card-body button:hover{background:#ff4d6d}
+#cartDrawer{position:fixed;top:0;right:-400px;width:360px;max-width:92%;height:100%;background:#fff;padding:20px;transition:.3s;z-index:200;overflow-y:auto;box-shadow:-2px 0 10px rgba(0,0,0,.2)}
+#cartDrawer.open{right:0}
+.cart-item{display:flex;gap:10px;margin-bottom:12px;border-bottom:1px solid #eee;padding-bottom:10px;align-items:center}
+.cart-item img{width:60px;height:60px;object-fit:cover;border-radius:8px}
+.cart-item button{background:#ff4d6d;color:#fff;border:none;padding:4px 8px;border-radius:5px;cursor:pointer}
+.checkout{width:100%;padding:12px;background:#ff4d6d;color:#fff;border:none;border-radius:8px;margin-top:15px;cursor:pointer;font-size:16px}
+#popup{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;justify-content:center;align-items:center;z-index:300}
+#popup.show{display:flex}
+.popup-box{background:#fff;width:92%;max-width:480px;border-radius:15px;padding:20px;text-align:center}
+.popup-box img{width:100%;height:280px;object-fit:cover;border-radius:12px}
+.popup-box button{padding:11px 20px;margin:5px;border:none;border-radius:8px;cursor:pointer}
+.addBtn{background:#111;color:#fff}.closeBtn{background:#eee}
+</style>
 </head>
 <body>
-<h1>Welcome to fashion store</h1>
+
+<header>
+<div class="logo">Trendy<span> Fashion</span></div>
+<div><a href="#">Home</a><a href="#products">Shop</a><a href="#" onclick="openCart()">🛒 Cart (<span id="cartCount">0</span>)</a></div>
+</header>
+
+<div class="hero">
+<h1>Trendy Fashion Collection 2026</h1>
+<p>New Styles • Best Prices • Free Delivery</p>
+<button onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">Shop Now</button>
+</div>
+
+<div class="section" id="products">
+<h2>Shop By Category</h2>
+<div class="cats">
+<button class="active" onclick="filterCat('All',this)">All</button>
+<button onclick="filterCat('Men',this)">Men</button>
+<button onclick="filterCat('Women',this)">Women</button>
+<button onclick="filterCat('Accessories',this)">Accessories</button>
+</div>
+<div class="grid" id="productGrid"></div>
+</div>
+
+<!-- CART -->
+<div id="cartDrawer">
+<h2>Your Cart 🛒 <button style="float:right" onclick="closeCart()">X</button></h2>
+<div id="cartItems"></div>
+<h3 id="cartTotal">Total: ₹0</h3>
+<button class="checkout" onclick="alert('Order Placed! Thank You!');cart=[];updateCart();closeCart()">Checkout</button>
+</div>
+
+<!-- PRODUCT POPUP / PRODUCT PAGE -->
+<div id="popup" onclick="if(event.target==this) closePopup()">
+<div class="popup-box">
+<img id="pImg" src="">
+<h2 id="pName"></h2>
+<p id="pCat" style="color:#888"></p>
+<h3 id="pPrice" style="color:#ff4d6d;margin:8px 0"></h3>
+<p id="pDesc"></p>
+<button class="addBtn" id="pAddBtn">Add to Cart</button>
+<button class="closeBtn" onclick="closePopup()">Close</button>
+</div>
+</div>
+
+<script>
+// ===== PRODUCTS - EACH HAS UNIQUE ID - NEVER DUPLICATE =====
+const products = [
+{id:1, name:"Men Blue T-Shirt", cat:"Men", price:499, img:"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=500", desc:"Comfortable cotton blue T-shirt for men. Soft, breathable, perfect for daily wear."},
+{id:2, name:"Green Unisex Cap", cat:"Accessories", price:299, img:"https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=500", desc:"Stylish green unisex cap. Adjustable, cool for summer, fits everyone."},
+{id:3, name:"Black Sunglasses", cat:"Accessories", price:799, img:"https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=500", desc:"Cool black sunglasses with UV protection. Stylish for men and women."},
+{id:4, name:"Floral Dress", cat:"Women", price:999, img:"https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=500", desc:"Beautiful floral summer dress for women. Light, flowy and elegant."},
+{id:5, name:"Denim Jacket", cat:"Men", price:1299, img:"https://images.unsplash.com/photo-1551028719-00167b16eac5?w=500", desc:"Classic denim jacket for men. Trendy and warm."},
+{id:6, name:"White Sneakers", cat:"Men", price:1499, img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500", desc:"Comfortable white sneakers. Perfect for walking and style."},
+{id:7, name:"Pink Handbag", cat:"Women", price:899, img:"https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=500", desc:"Elegant pink handbag for women. Spacious and fashionable."},
+{id:8, name:"Silver Watch", cat:"Accessories", price:1999, img:"https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500", desc:"Premium silver watch. Classic look for all occasions."}
+];
+
+let cart = [];
+let currentFilter = 'All';
+
+// ===== SHOW PRODUCTS =====
+function render(){
+  let list = currentFilter==='All' ? products : products.filter(p=>p.cat===currentFilter);
+  document.getElementById('productGrid').innerHTML = list.map(p=>`
+    <div class="card">
+      <img src="${p.img}" onclick="openProduct(${p.id})" alt="${p.name}">
+      <div class="card-body">
+        <h3>${p.name}</h3>
+        <p style="color:#888;font-size:13px">${p.cat}</p>
+        <div class="price">₹${p.price}</div>
+        <button onclick="openProduct(${p.id})">View Product</button><br><br>
+        <button onclick="addToCart(${p.id});event.stopPropagation()">Add to Cart</button>
+      </div>
+    </div>
+  `).join('');
+}
+function filterCat(cat,btn){
+  currentFilter=cat;
+  document.querySelectorAll('.cats button').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active'); render();
+}
+
+// ===== CORRECT PRODUCT OPEN - THIS FIXES THE BUG =====
+// We FIND by ID. We NEVER use products[0] always!
+function openProduct(id){
+  const product = products.find(p => p.id === id); // <-- CORRECT!
+  if(!product){ alert("Product not found"); return; }
+  document.getElementById('pImg').src = product.img;
+  document.getElementById('pName').innerText = product.name;
+  document.getElementById('pCat').innerText = product.cat;
+  document.getElementById('pPrice').innerText = "₹" + product.price;
+  document.getElementById('pDesc').innerText = product.desc;
+  // Add button also uses THIS product's id
+  document.getElementById('pAddBtn').onclick = function(){ addToCart(product.id); closePopup(); };
+  document.getElementById('popup').classList.add('show');
+}
+function closePopup(){ document.getElementById('popup').classList.remove('show'); }
+
+// ===== CART - ALSO USES ID =====
+function addToCart(id){
+  const product = products.find(p => p.id === id); // <-- CORRECT!
+  if(!product) return;
+  let found = cart.find(item => item.id === id);
+  if(found){ found.qty++; } else { cart.push({...product, qty:1}); }
+  updateCart();
+  alert(product.name + " added to cart!");
+}
+function removeFromCart(id){
+  cart = cart.filter(item => item.id !== id);
+  updateCart();
+}
+function updateCart(){
+  document.getElementById('cartCount').innerText = cart.reduce((s,i)=>s+i.qty,0);
+  let total = 0;
+  document.getElementById('cartItems').innerHTML = cart.length===0 ? "<p>Cart is empty</p>" : cart.map(item=>{
+    total += item.price*item.qty;
+    return `<div class="cart-item">
+      <img src="${item.img}">
+      <div style="flex:1"><b>${item.name}</b><br>₹${item.price} x ${item.qty}</div>
+      <button onclick="removeFromCart(${item.id})">Remove</button>
+    </div>`;
+  }).join('');
+  document.getElementById('cartTotal').innerText = "Total: ₹" + total;
+}
+function openCart(){ document.getElementById('cartDrawer').classList.add('open'); }
+function closeCart(){ document.getElementById('cartDrawer').classList.remove('open'); }
+
+render(); updateCart();
+</script>
 </body>
 </html>

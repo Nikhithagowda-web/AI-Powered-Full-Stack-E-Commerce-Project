@@ -1,61 +1,58 @@
-
 package com.fashionstore.controller;
 
-import java.io.IOException;
-
-import com.fashionstore.dao.ProductDAO;
 import com.fashionstore.dao.impl.ProductDAOImpl;
 import com.fashionstore.model.Product;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 
-@WebServlet("/product-details")
+@WebServlet({"/product-details", "/store/product-details"})
 public class ProductDetailsServlet extends HttpServlet {
 
-    private static final long serialVersionUID = 1L;
-
-    private ProductDAO productDAO;
-
     @Override
-    public void init() throws ServletException {
-        productDAO = new ProductDAOImpl();
-    }
-
-    @Override
-    protected void doGet(HttpServletRequest request,
-                         HttpServletResponse response)
-                         throws ServletException, IOException {
-
-        String idParam = request.getParameter("id");
-
-        if (idParam == null || idParam.trim().isEmpty()) {
-            response.sendError(400, "Product ID is required");
+    protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        String idStr = req.getParameter("id");
+        if (idStr == null || idStr.trim().isEmpty()) {
+            res.sendRedirect(req.getContextPath() + "/products");
             return;
         }
 
+        int id;
         try {
-
-            int id = Integer.parseInt(idParam);
-
-            Product product = productDAO.getProductById(id);
-
-            if (product == null) {
-                response.sendError(404, "Product not found");
-                return;
-            }
-
-            request.setAttribute("product", product);
-
-            request.getRequestDispatcher(
-                    "/WEB-INF/views/product-details.jsp"
-            ).forward(request, response);
-
+            id = Integer.parseInt(idStr.trim());
         } catch (NumberFormatException e) {
-            response.sendError(400, "Invalid product ID");
+            res.sendRedirect(req.getContextPath() + "/products");
+            return;
         }
+
+        ProductDAOImpl dao = new ProductDAOImpl();
+        Product p = dao.getById(id);
+
+        if (p == null) {
+            res.sendRedirect(req.getContextPath() + "/products");
+            return;
+        }
+
+        List<Product> all = dao.getAllProducts();
+        req.setAttribute("product", p);
+        req.setAttribute("allProducts", all);
+
+        if (p.getSizes() != null && !p.getSizes().isEmpty()) {
+            req.setAttribute("sizes", Arrays.asList(p.getSizes().split(",")));
+        } else {
+            req.setAttribute("sizes", Arrays.asList("Free Size"));
+        }
+
+        req.getRequestDispatcher("/WEB-INF/views/product-details.jsp").forward(req, res);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        doGet(req, res);
     }
 }
