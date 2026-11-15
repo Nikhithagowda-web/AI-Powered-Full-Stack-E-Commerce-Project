@@ -24,7 +24,6 @@ A full-stack e-commerce web application where users can browse fashion products,
 - HTML
 - CSS
 - JavaScript
-- JSP
 
 **Backend**
 - Java
