@@ -7,7 +7,11 @@ WORKDIR /app
 COPY pom.xml .
 COPY src ./src
 
+# Build WAR file
 RUN mvn clean package -DskipTests
+
+# Verify that the hoodie image is included in WAR
+RUN jar tf target/fashionstore-0.0.1-SNAPSHOT.war | grep "images/hoodie.jpg"
 
 # Run the application using Tomcat
 FROM tomcat:10.1-jdk21-temurin
