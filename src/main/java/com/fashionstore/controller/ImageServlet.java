@@ -1,7 +1,6 @@
 
 package com.fashionstore.controller;
 
-import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -16,36 +15,37 @@ public class ImageServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request,
-                         HttpServletResponse response)
-            throws ServletException, IOException {
+                         HttpServletResponse response) throws IOException {
 
         String imageName = request.getPathInfo();
 
-        if (imageName == null || imageName.equals("/")) {
-            response.sendError(HttpServletResponse.SC_NOT_FOUND);
+        if (imageName == null || imageName.length() < 2) {
+            response.sendError(404);
             return;
         }
 
-        if (imageName.contains("..") || imageName.contains("/")) {
-            response.sendError(HttpServletResponse.SC_BAD_REQUEST);
+        imageName = imageName.substring(1);
+
+        if (imageName.contains("/") || imageName.contains("\\") ||
+            imageName.contains("..")) {
+            response.sendError(400);
             return;
         }
 
-        String resourcePath = "/images" + imageName;
+        String resourcePath = "/images/" + imageName;
 
         try (InputStream input =
-                     getServletContext().getResourceAsStream(resourcePath)) {
+                 getServletContext().getResourceAsStream(resourcePath)) {
 
             if (input == null) {
-                response.sendError(HttpServletResponse.SC_NOT_FOUND);
+                response.sendError(404);
                 return;
             }
 
+            String contentType = getServletContext().getMimeType(imageName);
             response.setContentType(
-                getServletContext().getMimeType(imageName)
+                contentType != null ? contentType : "application/octet-stream"
             );
-
-            response.setHeader("Cache-Control", "public, max-age=86400");
 
             try (OutputStream output = response.getOutputStream()) {
                 input.transferTo(output);
