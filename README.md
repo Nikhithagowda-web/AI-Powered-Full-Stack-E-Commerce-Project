@@ -1,76 +1,102 @@
-# Fashion Store - AI-Powered Full Stack E-Commerce Web Application
+# 🛍️ AI-Powered Full Stack Fashion Store
 
-A full-stack fashion e-commerce web application that allows users to browse products, manage shopping carts, register, log in, and place orders through an easy-to-use online shopping platform.
+A full-stack e-commerce web application where users can browse fashion products, view product details, register, log in, add products to their cart, and proceed to checkout.
+
+## 🌐 Live Demo
+
+**[Click here to visit the Fashion Store](https://ai-powered-full-stack-e-commerce.onrender.com/)**
 
 ## ✨ Features
 
-- Browse Fashion Products
-- View Product Details
-- User Registration and Login
-- Add Products to Cart
-- Update and Remove Cart Items
-- Checkout and Place Orders
-- User Profile Management
-- View Order History
-- MySQL Database Integration
+- Browse fashion products
+- View product details
+- User registration and login
+- Add products to cart
+- Update product quantities
+- Remove products from cart
+- View cart total and order summary
+- Checkout functionality
+- Responsive user interface
 
 ## 🛠️ Tech Stack
 
-- **Frontend:** HTML, CSS, JavaScript
-- **Backend:** Java, JDBC, Servlets, JSP
-- **Database:** MySQL
-- **Architecture:** MVC (Model-View-Controller)
-- **Development Tool:** Eclipse IDE
-- **Web Server:** Apache Tomcat 10.1.36
-- **Build Tool:** Maven
-- **Database Connectivity:** JDBC
-- **AI Tools Used:** ChatGPT
-- **AI Skills:** Prompt Engineering, AI-Assisted Development
+**Frontend**
+- HTML
+- CSS
+- JavaScript
+- JSP
 
-## 🚀 How To Run
+**Backend**
+- Java
+- JDBC
+- Servlets
 
-### 1. Clone this repository
+**Database**
+- MySQL
 
-```bash
-git clone https://github.com/Nikhithagowda-web/AI-Powered-Full-Stack-E-Commerce-Project/edit/main/README.md
-```
+**Tools & Technologies**
+- Eclipse IDE
+- Apache Tomcat 10
+- Maven
+- Git and GitHub
+- Render
 
-### 2. Import the Project
-
-- Open Eclipse IDE.
-- Import the project as an Existing Maven Project.
-- Wait for Maven dependencies to download.
-
-### 3. Configure MySQL Database
-
-- Open MySQL.
-- Create a database named `fashionstore`.
-- Configure your database username and password in the project.
-- Execute the required SQL table creation scripts.
-
-### 4. Configure Apache Tomcat
-
-- Configure Apache Tomcat 10.1.36 in Eclipse.
-- Add the Fashion Store project to the server.
-- Start the Tomcat server.
-
-### 5. Run the Application
-
-Open your browser and visit:
+## 📂 Project Structure
 
 ```text
-http://localhost:8080/fashionstore
+fashionstore/
+├── src/
+│   └── main/
+│       ├── java/
+│       │   └── com/fashionstore/
+│       │       ├── controller/
+│       │       ├── dao/
+│       │       ├── model/
+│       │       └── util/
+│       └── webapp/
+│           ├── images/
+│           ├── WEB-INF/
+│           │   └── views/
+│           ├── index.html
+│           └── index.jsp
+├── pom.xml
+└── Dockerfile
 ```
 
-## 🎯 Project Objective
+## 🚀 Deployment
 
-To develop a user-friendly online fashion shopping platform that simplifies product browsing, shopping cart management, and order placement using Java Full Stack technologies.
+- Frontend and backend deployed using Render.
+- MySQL database hosted on Clever Cloud.
+- Source code maintained on GitHub.
 
+## ▶️ Run Locally
 
-## 🎥 Project Demo Video
+1. Clone the repository:
 
-[▶️ Click Here To Watch Demo Video](https://github.com/Nikhithagowda-web/AI-Powered-Full-Stack-E-Commerce-Project/releases/download/v1.0.0/Demo.video.of.AI.Powered.E-Commerce.Project)
+```bash
+git clone https://github.com/Nikhithagowda-web/AI-Powered-Full-Stack-E-Commerce-Project.git
+```
 
-## 👩‍💻 Made By
+2. Import the project into Eclipse as a Maven project.
 
-**Nikhitha Gowda**
+3. Configure your MySQL database and database connection settings.
+
+4. Build the project using Maven.
+
+5. Run the application on Apache Tomcat 10.
+
+6. Open:
+
+```text
+http://localhost:8080/
+```
+
+## 👩‍💻 Developer
+
+**Nikhitha K P**
+
+CSE Graduate | Java Full Stack Developer
+
+---
+
+⭐ If you like this project, consider giving the repository a star!
